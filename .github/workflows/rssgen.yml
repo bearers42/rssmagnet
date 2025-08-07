@@ -24,6 +24,14 @@ jobs:
       run: |
         echo "${{ secrets.GDRIVE_CREDENTIALS }}" | base64 -d > creds.json
 
+    - name: Decode creds.json 1
+      run: |
+        echo "${{ secrets.GDRIVE_CREDENTIALS }}"  
+
+    - name: Decode creds.json 2
+      run: |
+        cat creds.json        
+
     - name: Run script
       run: python3 gen_rss.py
 
