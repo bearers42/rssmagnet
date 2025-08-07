@@ -1,0 +1,35 @@
+name: Generate RSS from Google Sheet
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # каждый час
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install gspread oauth2client
+
+    - name: Create creds.json
+      run: echo "${{ secrets.GDRIVE_CREDENTIALS }}" > creds.json
+
+    - name: Run script
+      run: python3 gen_rss.py
+
+    - name: Commit and push
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add feed.xml
+        git commit -m "Update feed"
+        git push
