@@ -22,7 +22,7 @@ SubElement(channel, "description").text = "Generated from Google Sheets"
 for row in data:
     item = SubElement(channel, "item")
     SubElement(item, "title").text = "SOME"
-    SubElement(item, "link").text = row['A']
+    SubElement(item, "link").text = row['link']
     SubElement(item, "guid", isPermaLink="true").text = row['A']
     SubElement(item, "pubDate").text = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
