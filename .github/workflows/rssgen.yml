@@ -2,7 +2,7 @@ name: Generate RSS from Google Sheet
 
 on:
   schedule:
-    - cron: '0 * * * *'  # каждый час
+    - cron: '24 * * * *'  # каждый час
   workflow_dispatch:
 
 jobs:
