@@ -23,7 +23,7 @@ for row in data:
     item = SubElement(channel, "item")
     SubElement(item, "title").text = "SOME"
     SubElement(item, "link").text = row['link']
-    SubElement(item, "guid", isPermaLink="true").text = row['A']
+    SubElement(item, "guid", isPermaLink="true").text = row['link']
     SubElement(item, "pubDate").text = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 with open("feed.xml", "wb") as f:
